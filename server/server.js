@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+var bodyParser = require('body-parser');
 const SocketServer = require('ws').Server;
 const path = require('path');
 const api = require('./api/api');
@@ -13,6 +14,7 @@ const PORT = process.env.PORT || 3000;
 const INDEX = path.join(__dirname, '../index.html');
 const server = express();
 server.use(cors());
+server.use(bodyParser.json());
 server.get('/', function(req, res) {
     res.sendFile(INDEX);
 });
