@@ -1,0 +1,11 @@
+{
+  "name": "YP Technical Chalenge",
+  "short_name": "YP TC",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "icon.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}

@@ -1,0 +1,29 @@
+.bar.bar-header {
+    background: rgba(255,255,255,0);
+    border-bottom-width: 0;
+    height: 5em;
+    /* padding: 1em; */
+}
+
+/* Increasing button size **/
+.bar.bar-header .button {
+    /* top: 10px; */
+    padding: .8em;
+}
+
+.bar.bar-header .larger::before {
+    font-size: 52px;
+}
+
+.jumbotron-logo {
+    background: url("../img/Youper-Logo-Circle-120x120.png") no-repeat;
+    background-size: contain;
+    display: block;
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+}
+
+ion-content.has-header {
+    padding-top: 60px;
+}

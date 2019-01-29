@@ -1,6 +1,7 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('../server');
+// const server = require('../server');
+const server = require('../app');
 const mongoose = require('mongoose');
 const Message = require('../models/message');
 const { MongoMemoryServer } = require('mongodb-memory-server');
@@ -31,6 +32,7 @@ afterEach(function (done) {
 
 // Test suite for testing API endpoins
 describe('Api Endpoints', function () {
+  
   it('should return empty messages under /messages GET', function (done) {
     chai.request(server)
       .get('/api/messages')
@@ -84,7 +86,7 @@ describe('Api Endpoints', function () {
 
         res.body.title.should.eql('Hello');
         res.body.body.should.eql('World');
-        
+
         return Message.countDocuments();
       })
       .then((count) => {

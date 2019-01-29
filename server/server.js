@@ -1,33 +1,13 @@
 'use strict';
 
-const express = require('express');
-var bodyParser = require('body-parser');
-const SocketServer = require('ws').Server;
-const path = require('path');
-const api = require('./api/api');
-const cors = require('cors');
+const mongoose = require('mongoose');
+const app = require('./app');
 
-// production will use AWS environment variables
-const PORT = process.env.PORT || 3000;
+// MongoDB connection initalization
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/yp", { useNewUrlParser: true }).then(
+    () => { console.info(`${new Date()} - Connected to MongoDB: ${process.env.MONGODB_URI}`); },
+    err => { console.error('MongoDB Connection Error. Please make sure that', process.env.MONGODB_URI, 'is running.'); }
+);
 
-// basic express initialization
-const INDEX = path.join(__dirname, '../index.html');
-const server = express();
-server.use(cors());
-server.use(bodyParser.json());
-server.get('/', function(req, res) {
-    res.sendFile(INDEX);
-});
-
-// using different file for api endpoints for better organization
-server.use('/api', api);
-
-// using WebSockets to update clients on DB changes
-const wss = new SocketServer({ server });
-wss.on('connection', (ws) => {
-  console.log('Client connected');
-  ws.on('close', () => console.log('Client disconnected'));
-});
-
-module.exports = server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
+// express app initialization is done inside app
+app;
