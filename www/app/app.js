@@ -2,7 +2,12 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('yp', ['ionic', 'yp.controllers'])
+angular.module('yp', [
+  'ionic',
+  'ngCachedResource',
+  'yp.controllers',
+  'yp.directives',
+])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -30,15 +35,16 @@ angular.module('yp', ['ionic', 'yp.controllers'])
       .state('app', {
         url: '/app',
         abstract: true,
-        templateUrl: 'templates/app.html',
-        controller: 'AppCtrl'
+        templateUrl: 'app/app.html',
+        controller: 'AppCtrl',
+        controllerAs: 'vm'
       })
 
       .state('app.home', {
         url: '/home',
         views: {
           'navContent': {
-            templateUrl: 'templates/home.html'
+            templateUrl: 'app/home/home.html'
           }
         }
       })
@@ -47,10 +53,16 @@ angular.module('yp', ['ionic', 'yp.controllers'])
         url: '/messages',
         views: {
           'navContent': {
-            templateUrl: 'templates/messages.html'
+            controller: 'MessagesController',
+            controllerAs: 'vm',
+            templateUrl: 'app/messages/messages.html'
           }
         }
       })
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/home');
+  })
+
+  .constant('env', {
+    apiURL: ionic.Platform.isWebView() ? 'http://myremoteserver.com/api' : 'http://localhost:3000/api',
   });

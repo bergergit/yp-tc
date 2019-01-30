@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Tue Jan 29 2019 14:40:04 GMT-0200 (Horário de Verão de Brasília)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -15,7 +15,19 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      '**/*.spec.js*'
+
+      'www/lib/ionic/js/ionic.bundle.js',
+      'www/lib/third-party/**/*.min.js',
+      'node_modules/angular-mocks/angular-mocks.js',
+      'www/app/**/*.js',
+      
+    ],
+
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-phantomjs-launcher')
     ],
 
 
