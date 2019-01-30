@@ -44,7 +44,7 @@ angular.module('yp', [
         url: '/home',
         views: {
           'navContent': {
-            templateUrl: 'app/home/home.html'
+            templateUrl: 'app/pages/home/home.html'
           }
         }
       })
@@ -55,7 +55,7 @@ angular.module('yp', [
           'navContent': {
             controller: 'MessagesController',
             controllerAs: 'vm',
-            templateUrl: 'app/messages/messages.html'
+            templateUrl: 'app/pages/messages/messages.html'
           }
         }
       });

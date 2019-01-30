@@ -30,6 +30,8 @@ ion-content.has-header {
 /* === MESSAGES === */
 .messages-container {
     margin: 0 25px;
+    display: block;
+    position: relative;
 }
 .card {
     border-radius: 15px;

@@ -20,8 +20,11 @@ module.exports = function (config) {
       'www/lib/third-party/moment/moment.js',
       'www/lib/third-party/**/*.min.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      'www/app/**/*.js',
-      
+      'www/app/*.js',
+      'www/app/pipes/**/*.js',
+      'www/app/services/**/*.js',
+      'www/app/directives/**/*.js',
+      'www/app/pages/**/*.js',
     ],
 
     plugins: [

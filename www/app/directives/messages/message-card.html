@@ -1,0 +1,9 @@
+<div class="alert-badge" ng-if="!message.read"></div>
+<div class="card" ng-click="toggleMessage(message)">
+    <div class="item item-text-wrap">
+        <p class="header-info">{{ fromMomentMessage(message.timeReceived) }}</p>
+        <span class="h4">{{ message.title }}</span>
+        <p ng-if="!expanded" ng-bind-html="message.body | summary"></p>
+        <p ng-if="expanded" ng-bind-html="message.body"></p>
+    </div>
+</div>

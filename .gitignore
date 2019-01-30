@@ -14,7 +14,6 @@ log.txt
 *.sublime-workspace
 .vscode/
 npm-debug.log*
-
 .ionic/
 .sourcemaps/
 .sass-cache/
@@ -26,6 +25,7 @@ temp/
 platforms/
 plugins/
 bower_components/
+
 plugins/android.json
 plugins/ios.json
 
@@ -62,7 +62,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-keys
+dev/
 
 # System Files
 .DS_Store
