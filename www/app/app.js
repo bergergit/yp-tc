@@ -1,12 +1,12 @@
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
+// Global app configuration
 angular.module('yp', [
   'ionic',
   'ngCachedResource',
+  'ngStorage',
+  'angularMoment',
   'yp.controllers',
   'yp.directives',
+  'yp.api'
 ])
 
   .run(function ($ionicPlatform) {
@@ -58,11 +58,13 @@ angular.module('yp', [
             templateUrl: 'app/messages/messages.html'
           }
         }
-      })
+      });
+
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/home');
   })
 
+  // stores environment config variables
   .constant('env', {
-    apiURL: ionic.Platform.isWebView() ? 'http://myremoteserver.com/api' : 'http://localhost:3000/api',
+    apiURL: ionic.Platform.isWebView() ? 'http://myremoteserver.com/api' : 'http://localhost:3000/api'
   });

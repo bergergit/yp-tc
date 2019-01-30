@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "YP Technical Challenge",
   "scripts": {
-    "start": "cd server && nde server.js",
+    "start": "cd server && node server.js",
     "test": "karma start unit-tests.conf.js",
     "test-server": "cd server && mocha '**/*.spec.js*'"
   },

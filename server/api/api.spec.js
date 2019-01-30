@@ -1,3 +1,5 @@
+process.env.PORT = 3001;
+
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 // const server = require('../server');
@@ -13,6 +15,7 @@ let mongoServer;
 
 // creates an in-memory Server instance, so we don't point to production/development dbs
 before(function (done) {
+  
   mongoServer = new MongoMemoryServer();
   mongoServer.getConnectionString()
     .then(mongoUri => Promise.resolve(mongoUri))

@@ -1,3 +1,10 @@
-<div ng-repeat="message in messages track by $index">
-    <p>{{ message }}</p>
+<h3 class="text-center positive" ng-if="messages.length === 0">No messages at this time</h3>
+<div ng-repeat="message in messages track by $index" class="messages-container">
+    <div class="card">
+        <div class="item item-text-wrap">
+            <p class="header-info">5 minutes ago</p>
+            <span class="h3">{{ message.title }}</span>
+            <p>{{ message.body }}</p>
+        </div>
+    </div>
 </div>

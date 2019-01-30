@@ -5,7 +5,7 @@ angular.module('yp.directives')
         return {
             restrict: 'E',
             scope: {
-                messages: '=messages'
+                messages: '='
             },
             controller: function () {
                 // console.log('Messages Directive');

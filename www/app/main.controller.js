@@ -1,10 +1,9 @@
 
-
+// Main app controller
 angular.module('yp.controllers', []).controller('AppCtrl', ['$state', 
 function ($state) {
 
     var vm = this;
-
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.

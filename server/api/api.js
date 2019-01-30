@@ -4,7 +4,9 @@ const Message = require('../models/message');
 
 // GET all messages
 router.get('/messages', (req, res) => {
-    Message.find(function (err, messages) {
+    Message.find({})
+    .sort({ date: -1 })
+    .exec(function (err, messages) {
         if (err) return handleError(err, res);
         res.send(messages);
     });
@@ -14,7 +16,8 @@ router.get('/messages', (req, res) => {
 router.post('/message', (req, res) => {
     let message = new Message({
         title: req.body.title,
-        body: req.body.body
+        body: req.body.body,
+        date: new Date()
     });
 
     message.save(function (err, updatedMessage) {
