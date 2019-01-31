@@ -4,7 +4,9 @@
         <button class="button button-icon button-clear ion-android-contact larger"></button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-ios-bell larger" ng-click="vm.goToMessages()"></button>
+        <button class="button button-icon button-clear ion-ios-bell larger" ng-click="vm.goToMessages()">
+            <div class="alert-badge icon" ng-if="vm.$storage.newMessages > 0"></div>
+        </button>
     </ion-nav-buttons>
     
     <ion-content class="paddingx">

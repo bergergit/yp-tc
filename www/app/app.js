@@ -1,6 +1,7 @@
 // Global app configuration
 angular.module('yp', [
   'ionic',
+  'ngAnimate',
   'ngCachedResource',
   'ngStorage',
   'angularMoment',
@@ -44,6 +45,8 @@ angular.module('yp', [
         url: '/home',
         views: {
           'navContent': {
+            controller: 'HomeController',
+            controllerAs: 'vm',
             templateUrl: 'app/pages/home/home.html'
           }
         }

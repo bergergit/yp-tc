@@ -1,4 +1,4 @@
-describe('AppController', function () {
+describe('MessageController', function () {
 
 	var controller,
 		apiMock,
@@ -27,7 +27,7 @@ describe('AppController', function () {
 		};
 
 		// mock $state
-		localStorageMock = jasmine.createSpyObj('$localStorage spy', ['hasMessage']);
+		localStorageMock = jasmine.createSpyObj('$localStorage spy', ['newMessages']);
 
 		$rootScope = _$rootScope_;
 		$scope = $rootScope.$new();
@@ -42,15 +42,11 @@ describe('AppController', function () {
 
 	it('should be defined', function () {
 		expect(controller).toBeDefined();
-
-		// controller.goToMessages();
-		// expect(stateMock.go).toHaveBeenCalledWith('app.messages');
 	});
 
 	it('should invoke messages serviec', function() {
 		expect(apiMock.getAllMessages).toHaveBeenCalled();
-		expect(localStorageMock.hasMessage).toBeDefined();
-		expect(localStorageMock.hasMessage).toBeFalsy();
+		// expect(localStorageMock.newMessages).toBeDefined();
 
 		deferredService.resolve([{ title: 'foo', body: 'bar'}]);
 		$rootScope.$digest();

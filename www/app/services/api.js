@@ -28,7 +28,8 @@ angular.module('yp.api', ['ngResource']).factory('Api', ['$resource', 'env', '$l
 
         // merges the messages from the server, with the ones from local storage
         var _mergeMessages = function (messages) {
-            if (!$localStorage.messages) $localStorage.messages = messages || [];
+            // if (!$localStorage.messages) $localStorage.messages = messages || [];
+            if (!$localStorage.messages) $localStorage.messages = [];
             if (messages) {
                 for (var i = 0; i < messages.length; i++) {
                     var localMessage = _findLocalMessageById(messages[i]._id);
@@ -36,13 +37,12 @@ angular.module('yp.api', ['ngResource']).factory('Api', ['$resource', 'env', '$l
                     // message data is also merged with local message, giving a chance for the message to be updated by the server
                     localMessage.read = localMessage.read || false;
                     localMessage.timeReceived = localMessage.timeReceived || moment();
-                    localMessage._id = messages[i]._id;
-                    localMessage.title = messages[i].title;
-                    localMessage.body = messages[i].body;
+                    localMessage = Object.assign(localMessage, messages[i]);
                     
-                    // // message not found in local storage. set 'hasMessage' in local storage, and add it to local storage array
+                    // message not found in local storage. increase newMessages count in local storage, and add it to local storage array
                     if (localMessage.new) {
-                        $localStorage.hasMessage = true;
+                        $localStorage.newMessages = $localStorage.newMessages + 1;
+                        console.log('newMessages has increased 1', $localStorage.newMessages);
                         localMessage.new = false;
                         $localStorage.messages.unshift(localMessage);
                     }
@@ -56,6 +56,11 @@ angular.module('yp.api', ['ngResource']).factory('Api', ['$resource', 'env', '$l
             // this method retrives all messaged from the server, and compares with a local copy, to find out if there is a new message
             getAllMessages: function () {
                 var defer = $q.defer();
+                if ($localStorage.newMessages === undefined) {
+                    console.log('setting local 0');
+                    $localStorage.newMessages = 0;
+                }
+                // $localStorage = $localStorage.$default({ newMessages: 0 });
 
                 // retrieves messages from the server
                 $resource(env.apiURL + '/messages/:id', { id: '@_id' }).query().$promise

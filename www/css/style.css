@@ -5,7 +5,6 @@
     height: 60px;
 }
 
-/* Increasing button size **/
 .bar.bar-header .button {
     padding: 16px;
 }
@@ -26,12 +25,33 @@
 ion-content.has-header {
     padding-top: 40px;
 }
+.button-rounded {
+    display: block;
+    width: 190px;
+    line-height: 30px;
+    margin: 0 auto;
+    border-radius: 50px;
+    opacity: 0;
+}
+.margin-top {
+    margin-top: 16px;
+}
 
 /* === MESSAGES === */
 .messages-container {
     margin: 0 25px;
     display: block;
     position: relative;
+}
+.card .item {
+    background-color: transparent;
+    background-color: #ccc;
+}
+.card .item {
+    transition: all 0.5s ease-in-out;
+}
+.card .item.not-read {
+    background-color: #fff;
 }
 .card {
     border-radius: 15px;
@@ -40,3 +60,33 @@ ion-content.has-header {
     color: #888;
     margin-bottom: 16px;
 }
+.body-item {
+    transition: all 0.6s ease-in-out;
+}
+.body-item.expanded {
+    height: 300px;
+    min-height: 100%;
+    opacity: 1;
+}
+.body-item.shrinked {
+    height: 50px;
+}
+.body-item img {
+    max-width: 100%;
+}
+.button-rounded.expanded {
+    /* transition-delay: 1s; */
+    transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+}
+.button-rounded.expanded {
+    /* height: 80px; */
+    opacity: 1;
+}
+
+/* .button-rounded.ng-hide-add {
+    opacity: 0;
+    height: 0;
+    display: none;
+} */
+
+

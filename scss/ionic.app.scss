@@ -22,7 +22,7 @@ $positive: #feab40;
 
 // Custom theme for this app
 $button-stable-text: #fff;
-$base-background-color: #888;
+$base-background-color: #999;
 $bar-stable-bg: $base-background-color;
 $base-color: #666;
 
@@ -42,9 +42,17 @@ $base-color: #666;
     display: flex;
     width: 24px;
     height: 24px;
+
+    position: absolute;
+}
+
+.alert-badge.icon {
+    top: 5px;
+    right: 11px;
+}
+.alert-badge.message {
     top: -8px;
     right: -10px;
-    position: absolute;
 }
 
 // Include all of Ionic

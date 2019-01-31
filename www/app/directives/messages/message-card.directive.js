@@ -7,7 +7,8 @@ angular.module('yp.directives')
             scope: {
                 message: '='
             },
-            controller: ['$scope', 'moment', function MessagesController($scope, moment) {
+            controller: ['$scope', 'moment', '$localStorage',
+            function MessagesController($scope, moment, $localStorage) {
 
                 $scope.expanded = false;
 
@@ -18,6 +19,8 @@ angular.module('yp.directives')
 
                 // expands the message and mark it as read
                 $scope.toggleMessage = function(message) {
+                    // decrease number of unread messages
+                    if (!message.read) $localStorage.newMessages = Math.max($localStorage.newMessages - 1, 0);
                     message.read = true;
                     $scope.expanded = !$scope.expanded;
                 }

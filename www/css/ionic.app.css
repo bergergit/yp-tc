@@ -30,9 +30,15 @@ $dark:                            #444 !default;
   display: flex;
   width: 24px;
   height: 24px;
-  top: -8px;
-  right: -10px;
   position: absolute; }
+
+.alert-badge.icon {
+  top: 5px;
+  right: 11px; }
+
+.alert-badge.message {
+  top: -8px;
+  right: -10px; }
 
 /*!
   Ionicons, v2.0.1
@@ -3579,7 +3585,7 @@ ion-infinite-scroll {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #888;
+  background-color: #999;
   overflow: hidden; }
 
 .view-container {
@@ -3946,7 +3952,7 @@ a.subdued {
       background-image: linear-gradient(180deg, #ddd, #ddd 50%, transparent 50%); }
   .bar.bar-stable {
     border-color: #b2b2b2;
-    background-color: #888;
+    background-color: #999;
     background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
     color: #fff; }
     .bar.bar-stable .title {
@@ -4137,7 +4143,7 @@ a.subdued {
 
 .bar-stable .button {
   border-color: #b2b2b2;
-  background-color: #888;
+  background-color: #999;
   color: #fff; }
   .bar-stable .button:hover {
     color: #fff;

@@ -1,9 +1,14 @@
-<div class="alert-badge" ng-if="!message.read"></div>
-<div class="card" ng-click="toggleMessage(message)">
-    <div class="item item-text-wrap">
+<div class="alert-badge message" ng-if="!message.read"></div>
+<div class="card" >
+    <div class="item item-text-wrap" ng-class="{'not-read': !message.read || expanded}" ng-click="toggleMessage(message)">
         <p class="header-info">{{ fromMomentMessage(message.timeReceived) }}</p>
         <span class="h4">{{ message.title }}</span>
-        <p ng-if="!expanded" ng-bind-html="message.body | summary"></p>
-        <p ng-if="expanded" ng-bind-html="message.body"></p>
+        <p ng-bind-html="expanded ? (message.body) : (message.body | summary)" class="body-item" ng-class="{'expanded': expanded, 'shrinked': !expanded}"></p>
+        <!-- <p ng-hide="expanded" ng-bind-html="message.body | summary" class="summary-item" ng-class="{'expanded': !expanded, 'shrinked': expanded}"></p> -->
+        <!-- <p ng-show="expanded" ng-bind-html="message.body" class="body-item" ng-class="{'expanded': expanded, 'shrinked': !expanded}"></p> -->
+        <button ng-show="expanded" class="text-center center button button-large button-positive button-rounded margin-top" ng-class="{'expanded': expanded}">
+            Got it
+        </button>
+
     </div>
 </div>

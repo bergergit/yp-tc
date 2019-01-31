@@ -1,4 +1,4 @@
-describe('AppController', function () {
+describe('HomeController', function () {
 
 	var controller,
 		stateMock,
@@ -31,7 +31,7 @@ describe('AppController', function () {
 		$rootScope = _$rootScope_;
 		// $scope = $rootScope.$new();
 
-		controller = $controller('AppCtrl', {
+		controller = $controller('HomeController', {
 			'$state': stateMock,
 		});
 

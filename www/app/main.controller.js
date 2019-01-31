@@ -12,10 +12,6 @@ function ($state) {
     //$scope.$on('$ionicView.enter', function(e) {
     //});
 
-    vm.goToMessages = function() {
-      $state.go('app.messages');
-    }
-
     // // Form data for the login modal
     // $scope.loginData = {};
 
