@@ -17,9 +17,9 @@ module.exports = function (config) {
     files: [
 
       'www/lib/ionic/js/ionic.bundle.js',
+      'node_modules/angular-mocks/angular-mocks.js',
       'www/lib/third-party/moment/moment.js',
       'www/lib/third-party/**/*.min.js',
-      'node_modules/angular-mocks/angular-mocks.js',
       'www/app/*.js',
       'www/app/pipes/**/*.js',
       'www/app/services/**/*.js',

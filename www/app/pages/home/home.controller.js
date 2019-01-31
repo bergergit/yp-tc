@@ -78,7 +78,6 @@ angular.module('yp.controllers').controller('HomeController', ['$state', '$local
         // uploads picture to remote server and save the url in local storage
         var uploadPicture = function () {
             Api.uploadPicture($localStorage.profilePictureUrl).then(function(response) {
-                console.log('picture uploaded. got url: ' + response.url);
                 // updating localStorage with the full picture URL
                 $localStorage.profilePictureUrl = response.url;
             });
