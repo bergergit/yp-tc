@@ -1,6 +1,7 @@
 // Global app configuration
 angular.module('yp', [
   'ionic',
+  'ngCordova',
   'ngAnimate',
   'ngCachedResource',
   'ngStorage',
@@ -69,5 +70,6 @@ angular.module('yp', [
 
   // stores environment config variables
   .constant('env', {
-    apiURL: ionic.Platform.isWebView() ? 'http://myremoteserver.com/api' : 'http://localhost:3000/api'
+    apiURL: ionic.Platform.isWebView() ? 'http://ypchallengedemo-dev.us-east-1.elasticbeanstalk.com/api' : 'http://localhost:3000/api',
+    wsServer: ionic.Platform.isWebView() ? 'ws://ypchallengedemo-dev.us-east-1.elasticbeanstalk.com:3001' : 'ws://localhost:3001'
   });

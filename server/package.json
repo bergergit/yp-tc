@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "mocha '**/*.spec.js*'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.395.0",
     "body-parser": "^1.18.3",
     "bufferutil": "4.0.1",
     "cors": "^2.8.5",

@@ -1,17 +1,18 @@
-process.env.PORT = 3001;
+process.env.PORT = 3010;
+process.env.TEST = true;
 
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-// const server = require('../server');
 const server = require('../app');
 const mongoose = require('mongoose');
-const Message = require('../models/message');
+const messageSchema = require('../models/message');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 
 chai.should();
 chai.use(chaiHttp);
 
 let mongoServer;
+const Message = mongoose.model('messages', messageSchema);
 
 // creates an in-memory Server instance, so we don't point to production/development dbs
 before(function (done) {
@@ -25,6 +26,7 @@ before(function (done) {
 
 after(function (done) {
   mongoose.disconnect()
+    .then()
     .then(() => Promise.resolve())
     .then(mongoServer.stop().then(() => done()));
 });

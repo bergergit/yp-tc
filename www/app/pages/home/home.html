@@ -1,7 +1,10 @@
 <ion-view>
     <!-- Profile and Notification icons -->
     <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-android-contact larger"></button>
+        <button class="button button-icon button-clear ion-android-contact larger no-animate" ng-click="vm.selectPictureFromGallery()" ng-if="!vm.$storage.profilePictureUrl"></button>
+        <div class="item profile-picture no-animate" ng-click="vm.showProfilePictureAction()" ng-if="vm.$storage.profilePictureUrl">
+            <img id="profile-picture" ng-src="{{vm.$storage.profilePictureUrl}}">
+        </div>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
         <button class="button button-icon button-clear ion-ios-bell larger" ng-click="vm.goToMessages()">
@@ -12,6 +15,9 @@
     <ion-content class="paddingx">
       <div class="jumbotron-logo"></div>
       <h2 class="text-center positive">Full stack challenge</h2>
+
+      <!-- <button class="button button-smal positive" ng-click="vm.showProfilePictureAction()" ng-if="!ionic.Platform.isWebView()">Show action</button> -->
     </ion-content>
+
   </ion-view>
   

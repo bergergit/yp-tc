@@ -26,6 +26,17 @@ $base-background-color: #999;
 $bar-stable-bg: $base-background-color;
 $base-color: #666;
 
+// iPhone X Fix
+
+body {
+    /* for iOS 11.1 */
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top); 
+}
+html {
+    background-color: $base-background-color;
+}
+
 // Components customization
 .alert-badge {
     background-color: $positive;
@@ -47,8 +58,8 @@ $base-color: #666;
 }
 
 .alert-badge.icon {
-    top: 5px;
-    right: 11px;
+    top: -4px;
+    right: -3px;
 }
 .alert-badge.message {
     top: -8px;

@@ -1,6 +1,6 @@
 // This is the main Api service, used to communicate with backend endpoints
-angular.module('yp.services', []).service('Api', ['$resource', 'env', '$localStorage', '$q', 'moment',
-    function ($resource, env, $localStorage, $q, moment) {
+angular.module('yp.services', []).service('Api', ['$resource', 'env', '$localStorage', '$q', 'moment', '$cordovaDevice',
+    function ($resource, env, $localStorage, $q, moment, $cordovaDevice) {
 
         // finds a message by ID, in local storage messages
         var _findLocalMessageById = function(id) {
@@ -41,6 +41,7 @@ angular.module('yp.services', []).service('Api', ['$resource', 'env', '$localSto
                     
                     // message not found in local storage. increase newMessages count in local storage, and add it to local storage array
                     if (localMessage.new) {
+                        
                         $localStorage.newMessages = $localStorage.newMessages + 1;
                         localMessage.new = false;
                         $localStorage.messages.unshift(localMessage);
@@ -55,15 +56,11 @@ angular.module('yp.services', []).service('Api', ['$resource', 'env', '$localSto
             // this method retrives all messaged from the server, and compares with a local copy, to find out if there is a new message
             getAllMessages: function () {
                 var defer = $q.defer();
-                if ($localStorage.newMessages === undefined) {
-                    $localStorage.newMessages = 0;
-                }
-                // $localStorage = $localStorage.$default({ newMessages: 0 });
+                if ($localStorage.newMessages === undefined) $localStorage.newMessages = 0;
 
                 // retrieves messages from the server
                 $resource(env.apiURL + '/messages/:id', { id: '@_id' }).query().$promise
                 .then(function (messages) {
-                    console.log('got messages', messages);
                     _removeOrphanMessages(messages);
                     defer.resolve(service._mergeMessages(messages));
                 })
@@ -73,6 +70,15 @@ angular.module('yp.services', []).service('Api', ['$resource', 'env', '$localSto
                 });
 
                 return defer.promise;
+            },
+
+            uploadPicture: function(base64data) {
+                var deviceId = ionic.Platform.is('cordova') ? $cordovaDevice.getUUID() : 'localdeviceid';
+                var PictureResource = $resource(env.apiURL + '/profilePicture');
+                return new PictureResource({
+                    profilePicture: base64data,
+                    deviceId: deviceId
+                }).$save();
             },
 
             _mergeMessages: _mergeMessages
