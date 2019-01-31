@@ -4,6 +4,7 @@ describe('MessageController', function () {
 		apiMock,
 		localStorageMock,
 		$scope,
+		deferredService,
 		$rootScope;
 
 
@@ -44,9 +45,8 @@ describe('MessageController', function () {
 		expect(controller).toBeDefined();
 	});
 
-	it('should invoke messages serviec', function() {
+	it('should invoke messages service', function() {
 		expect(apiMock.getAllMessages).toHaveBeenCalled();
-		// expect(localStorageMock.newMessages).toBeDefined();
 
 		deferredService.resolve([{ title: 'foo', body: 'bar'}]);
 		$rootScope.$digest();

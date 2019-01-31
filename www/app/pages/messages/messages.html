@@ -1,6 +1,6 @@
 <ion-view view-title="">
     <ion-content class="padding">
-            <h3 class="text-center positive" ng-if="messages.length === 0">No messages at this time</h3>
+            <h3 class="text-center positive" ng-if="vm.messages.length === 0">No messages at this time</h3>
             <div ng-repeat="message in vm.messages track by $index" class="messages-container">
                 <yp-message-card message="message"></yp-message-card>
             </div>

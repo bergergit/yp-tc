@@ -7,7 +7,7 @@ angular.module('yp', [
   'angularMoment',
   'yp.controllers',
   'yp.directives',
-  'yp.api'
+  'yp.services'
 ])
 
   .run(function ($ionicPlatform) {

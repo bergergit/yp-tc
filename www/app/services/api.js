@@ -1,5 +1,5 @@
 // This is the main Api service, used to communicate with backend endpoints
-angular.module('yp.api', ['ngResource']).factory('Api', ['$resource', 'env', '$localStorage', '$q', 'moment',
+angular.module('yp.services', []).service('Api', ['$resource', 'env', '$localStorage', '$q', 'moment',
     function ($resource, env, $localStorage, $q, moment) {
 
         // finds a message by ID, in local storage messages
@@ -42,7 +42,6 @@ angular.module('yp.api', ['ngResource']).factory('Api', ['$resource', 'env', '$l
                     // message not found in local storage. increase newMessages count in local storage, and add it to local storage array
                     if (localMessage.new) {
                         $localStorage.newMessages = $localStorage.newMessages + 1;
-                        console.log('newMessages has increased 1', $localStorage.newMessages);
                         localMessage.new = false;
                         $localStorage.messages.unshift(localMessage);
                     }
@@ -52,12 +51,11 @@ angular.module('yp.api', ['ngResource']).factory('Api', ['$resource', 'env', '$l
             return $localStorage.messages;
         }
 
-        return {
+        var service = {
             // this method retrives all messaged from the server, and compares with a local copy, to find out if there is a new message
             getAllMessages: function () {
                 var defer = $q.defer();
                 if ($localStorage.newMessages === undefined) {
-                    console.log('setting local 0');
                     $localStorage.newMessages = 0;
                 }
                 // $localStorage = $localStorage.$default({ newMessages: 0 });
@@ -65,8 +63,9 @@ angular.module('yp.api', ['ngResource']).factory('Api', ['$resource', 'env', '$l
                 // retrieves messages from the server
                 $resource(env.apiURL + '/messages/:id', { id: '@_id' }).query().$promise
                 .then(function (messages) {
+                    console.log('got messages', messages);
                     _removeOrphanMessages(messages);
-                    defer.resolve(_mergeMessages(messages));
+                    defer.resolve(service._mergeMessages(messages));
                 })
                 .catch(function(error) {
                     // a server error will still return local messages
@@ -74,7 +73,11 @@ angular.module('yp.api', ['ngResource']).factory('Api', ['$resource', 'env', '$l
                 });
 
                 return defer.promise;
-            }
+            },
+
+            _mergeMessages: _mergeMessages
         }
+
+        return service;
 
     }]);
