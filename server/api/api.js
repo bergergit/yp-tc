@@ -56,7 +56,7 @@ router.post('/profilePicture', (req, res) => {
     var deviceId = req.body.deviceId;
 
     // Allowing only images
-    const base64Data = new Buffer(req.body.profilePicture.replace(/^data:image\/\w+;base64,/, ""), 'base64');
+    const base64Data = Buffer.from(req.body.profilePicture.replace(/^data:image\/\w+;base64,/, ""), 'base64')
     
     // Getting the file type, ie: jpeg, png or gif
     const type = req.body.profilePicture.split(';')[0].split('/')[1];
