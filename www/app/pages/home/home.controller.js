@@ -48,9 +48,9 @@ angular.module('yp.controllers').controller('HomeController', ['$state', '$local
         vm.showProfilePictureAction = function () {
             var hideSheet = $ionicActionSheet.show({
                 buttons: [
-                    { text: 'Change picture' },
+                    { text: '<i class="icon ion-camera"></i>Change picture' },
                 ],
-                destructiveText: 'Delete picture',
+                destructiveText: '<i class="icon ion-trash-b"></i>Delete picture',
                 // titleText: 'Modify your picture',
                 cancelText: 'Cancel',
                 buttonClicked: function (index) {
@@ -81,8 +81,8 @@ angular.module('yp.controllers').controller('HomeController', ['$state', '$local
         // uploads picture to remote server and save the url in local storage
         var uploadPicture = function () {
             Api.uploadPicture($localStorage.profilePictureUrl).then(function(response) {
-                // updating localStorage with the full picture URL
-                $localStorage.profilePictureUrl = response.url;
+                // console.log('Picture uploaded');
+                // $localStorage.profilePictureUrl = response.url;
             });
         }
 
