@@ -80,6 +80,7 @@ router.post('/profilePicture', (req, res) => {
 
 // Generic error handler
 function handleError(error, response) {
+    console.error(error);
     response.status(500).send(error);
 }
 

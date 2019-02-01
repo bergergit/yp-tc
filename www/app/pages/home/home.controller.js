@@ -1,6 +1,6 @@
 // Controls home page, that contains profile and message buttons
-angular.module('yp.controllers').controller('HomeController', ['$state', '$localStorage', '$cordovaCamera', '$ionicActionSheet', 'Api', 'env',
-    function ($state, $localStorage, $cordovaCamera, $ionicActionSheet, Api, env) {
+angular.module('yp.controllers').controller('HomeController', ['$state', '$localStorage', '$cordovaCamera', '$ionicActionSheet', 'Api', 'env','$timeout',
+    function ($state, $localStorage, $cordovaCamera, $ionicActionSheet, Api, env, $timeout) {
 
         var vm = this;
         vm.$storage = $localStorage;
@@ -31,8 +31,11 @@ angular.module('yp.controllers').controller('HomeController', ['$state', '$local
                 $cordovaCamera.getPicture(options).then(function (imageData) {
                     // temporary adding the image as a base64 value to localStorage
                     $localStorage.profilePictureUrl = "data:image/jpeg;base64," + imageData;
-                    var image = document.getElementById('profile-picture');
-                    image.src = $localStorage.profilePictureUrl;
+                    $timeout(function() {
+                        var image = document.getElementById('profile-picture');
+                        image.src = $localStorage.profilePictureUrl;
+                    }, 500 );
+                    
 
                     uploadPicture();
                 }, function (err) {
@@ -85,8 +88,6 @@ angular.module('yp.controllers').controller('HomeController', ['$state', '$local
 
         // delete pictureUrl from local
         var removePicture = function () {
-            console.log('removing picture...');
-
             vm.hasProfilePicture = false;
             $localStorage.profilePictureUrl = null;
         }
