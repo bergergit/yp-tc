@@ -5,7 +5,6 @@ describe('HomeController', function () {
 		$scope,
 		$rootScope;
 
-
 	// load the module for our app
 	beforeEach(module('yp', 'yp.controllers'));
 
@@ -17,14 +16,6 @@ describe('HomeController', function () {
 
 	// instantiate the controller and mocks for every test
 	beforeEach(inject(function ($controller, _$rootScope_) {
-		// deferredService = $q.defer();
-
-		// mock service
-		// sericeMock = {
-		// 	login: jasmine.createSpy('login spy')
-		// 				  .and.returnValue(deferredService.promise)			
-		// };
-
 		// mock $state
 		stateMock = jasmine.createSpyObj('$state spy', ['go']);
 
